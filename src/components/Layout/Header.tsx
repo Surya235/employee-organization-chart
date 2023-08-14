@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { IEmployee, IMasterList } from '../Tree/utils';
 
 interface IHeader {
   isShow: boolean;
