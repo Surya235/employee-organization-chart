@@ -33,9 +33,14 @@ const MainLayout = () => {
   const generateTreeById = (id: string) => setRootId(id);
 
   const onDrop = (srcId: string, targetId: string) => {
-    if (srcId === targetId || rootID === srcId) {
+    if (
+      srcId === targetId ||
+      rootID === srcId ||
+      employeeTree[targetId].employee.id === srcId
+    ) {
       return;
     }
+
     axiosPut<IEmployees>(`/employee/${srcId}`, targetId).then((res) =>
       handleRes(res)
     );
