@@ -1,0 +1,282 @@
+/* Now the CSS */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+}
+
+body > * {
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-size: 24px;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+}
+
+.nav li {
+  margin-right: 20px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
+.tree ul {
+  padding-top: 20px;
+  position: relative;
+  transition: all 0.5s;
+}
+
+.tree li {
+  float: left;
+  text-align: center;
+  list-style-type: none;
+  position: relative;
+  padding: 20px 5px 0 5px;
+  transition: all 0.5s;
+}
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree li::before,
+.tree li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 50%;
+  border-top: 1px solid #ccc;
+  width: 50%;
+  height: 20px;
+}
+.tree li::after {
+  right: auto;
+  left: 50%;
+  border-left: 1px solid #ccc;
+}
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+.tree li:only-child::after,
+.tree li:only-child::before {
+  display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree li:only-child {
+  padding-top: 0;
+}
+
+/*Remove left connector from first child and 
+right connector from last child*/
+.tree li:first-child::before,
+.tree li:last-child::after {
+  border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.tree li:last-child::before {
+  border-right: 1px solid #ccc;
+  border-radius: 0 5px 0 0;
+}
+.tree li:first-child::after {
+  border-radius: 5px 0 0 0;
+}
+
+/*Time to add downward connectors from parents*/
+.tree ul ul::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  border-left: 1px solid #ccc;
+  width: 0;
+  height: 20px;
+}
+
+.tree li > .card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-decoration: none;
+  color: #666;
+  font-family: arial, verdana, tahoma;
+  font-size: 11px;
+  display: inline-flex;
+  max-width: 6rem;
+  cursor: pointer;
+  flex-flow: column nowrap;
+  gap: 0.35rem;
+  border-radius: 5px;
+  transition: all 0.5s;
+  align-items: center;
+  justify-content: center;
+}
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree li > .card:hover,
+.tree li > .card:hover + ul li > .card,
+.tree li > .card:hover + ul li > .card > .image-container {
+  background: #c8e4f8;
+  color: #000;
+  border: 0.15rem solid #8ac3eb;
+}
+/*Connector styles on hover*/
+.tree li > .card:hover + ul li::after,
+.tree li > .card:hover + ul li::before,
+.tree li > .card:hover + ul::before,
+.tree li > .card:hover + ul ul::before {
+  border-color: #94a0b4;
+}
+
+.image-container {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: 0.2rem solid #c8e4f8;
+  overflow: hidden;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+main {
+  display: flex;
+}
+
+.sidebar {
+  padding: 1rem;
+  flex: 0 0 10rem;
+  color: #fff;
+  width: max-content;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  background-color: rgb(93, 206, 93);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+  background-color: green;
+}
+
+input[type='search'] {
+  padding: 4px;
+  margin: 4px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  outline: none;
+}
+
+input[type='search']:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.employee-card {
+  margin: 0.2rem;
+  color: #888;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.employee-card.active {
+  color: #fff;
+  background-color: rgb(93, 206, 93);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.employee-image {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.employee-details {
+  flex: 1;
+}
+
+.employee-name {
+  margin-bottom: 5px;
+}
+
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.close-btn {
+  font-weight: bolder;
+  font-size: 1.5rem;
+  align-self: end;
+  cursor: pointer;
+}
+
+.modal-image {
+  width: 250px;
+  height: 250px;
+}
