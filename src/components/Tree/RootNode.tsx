@@ -10,14 +10,7 @@ const RootNode: FC<
     null
   );
 
-  const openModal = (employee: IEmployee) => {
-    setSelectedEmployee(employee);
-    console.log(employee);
-  };
-
-  const closeModal = () => {
-    setSelectedEmployee(null);
-  };
+  const openModal = (employee: IEmployee) => setSelectedEmployee(employee);
 
   return (
     <div className="tree">
@@ -29,7 +22,7 @@ const RootNode: FC<
           onDrop={onDrop}
         />
         {selectedEmployee && (
-          <EmployeeModal employee={selectedEmployee} onClose={closeModal} />
+          <EmployeeModal employee={selectedEmployee} onClose={() => setSelectedEmployee(null)} />
         )}
       </ul>
     </div>

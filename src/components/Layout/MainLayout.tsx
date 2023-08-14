@@ -36,7 +36,6 @@ const MainLayout = () => {
     if (srcId === targetId || rootID === srcId) {
       return;
     }
-    // console.log(`Started from ${srcId} Droped at ${targetId}`);
     axiosPut<IEmployees>(`/employee/${srcId}`, targetId).then((res) =>
       handleRes(res)
     );
@@ -48,7 +47,6 @@ const MainLayout = () => {
     }
     master.current = Object.values(res);
     const tree = constructTree(res);
-    console.log(tree);
     topMangerId.current = tree.rootID;
     setEmployeeTree(tree.rootNodes);
     setRootId(tree.rootID);

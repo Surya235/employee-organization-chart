@@ -114,7 +114,6 @@ export const empServer = () =>
           JSON.stringify(employees)
         ];
       }
-      console.log(empId, managerId, emp, employees[managerId]);
       emp.manager = managerId;
 
       return [
