@@ -1,4 +1,4 @@
-import { FC, DragEvent } from 'react';
+import { FC } from 'react';
 import { IEmployee } from './utils';
 
 type ICard = IEmployee & {
